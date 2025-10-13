@@ -16,6 +16,8 @@ qt_add_qml_module(appAntDesign-QML
     URI AntDesign-QML
     VERSION 1.0
     QML_FILES Main.qml
+    QML_FILES AButton/AButton.qml
+    QML_FILES AButton/AButton.js
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
