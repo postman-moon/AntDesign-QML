@@ -30,24 +30,30 @@ const Colors = {
     primaryHover: "#4096ff",
     primaryPressed: "#0958d9",
     border: "#d9d9d9",
-    text: "rgba(0, 0, 0, 0.88)",
+    text: Qt.rgba(0, 0, 0, 0.88),
+    textHover: "#69b1ff",
+    textPressed: Qt.rgba(0, 0, 0, 0.15),
     disabled: "rgba(0, 0, 0, 0.25)",
     white: "#FFF",
-    transparent: "transparent"
+    transparent: "transparent",
+    backgroundHover: Qt.rgba(0, 0, 0, 0.06),
 }
 
 // 工具函数 - 获取背景颜色
-function getBackgroundColor(btnType, ghost, enabled = true) {
+function getBackgroundColor(btnType, ghost, isHovered = false, isPressed = false, enabled = true) {
 
     switch (btnType) {
         case BtnType.Primary:
-            return Colors.primary;
+            return isPressed ? Colors.primaryPressed :
+                isHovered ? Colors.primaryHover : Colors.primary;
 
         case BtnType.Ghost:
         case BtnType.Dashed:
         case BtnType.Link:
-        case BtnType.Text:
             return Colors.transparent;
+
+        case BtnType.Text:
+            return isPressed ? Colors.textPressed : isHovered ? Colors.backgroundHover : Colors.transparent;
 
         case BtnType.Default:
             return Colors.white;
@@ -58,8 +64,7 @@ function getBackgroundColor(btnType, ghost, enabled = true) {
 // 工具函数 - 获取边框宽度
 function getBorderWidth() {
 
-    if (btnType === BtnType.Primary ||
-        btnType === BtnType.Default) {
+    if (btnType === BtnType.Default) {
         return 1
     }
 
@@ -75,7 +80,7 @@ function getBorderColor(btnType, ghost, isHovered = false, isPressed = false) {
             isHovered ? Colors.primaryHover : Colors.primary
     } else if (btnType === BtnType.Default || btnType === BtnType.Dashed) {
         return isPressed ? Colors.primaryPressed :
-            isHovered ? Colors.primary : Colors.border
+            isHovered ? Colors.primaryHover : Colors.border
     }
 
     return Colors.transparent;
@@ -89,8 +94,21 @@ function getDashedBorderColor(btnType, ghost, isHovered = false, isPressed = fal
     if (ghost) {
         return isHovered ? Colors.primary : Colors.white
     }
-    return isHovered ? Colors.primary : Colors.border
+    return isPressed ? Colors.primaryPressed : isHovered ? Colors.primaryHover : Colors.border
 
+}
+
+// 工具函数 - 获取文字颜色
+function getTextColor(btnType, ghost, isHovered = false, isPressed = false, enabled = true) {
+    if (btnType === BtnType.Primary) {
+        return Colors.white;
+    } else if (btnType === BtnType.Default || btnType === BtnType.Dashed) {
+        return isPressed ? Colors.primaryPressed : isHovered ? Colors.textHover : Colors.text;
+    } else if (btnType === BtnType.Text) {
+        return Colors.text;
+    } else if (btnType === BtnType.Link) {
+        return isPressed ? Colors.primaryPressed : isHovered ? Colors.textHover : Colors.primary;
+    }
 }
 
 // 导出所有内容
