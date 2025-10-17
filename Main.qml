@@ -13,7 +13,7 @@ Window {
 
     Rectangle {
         anchors.fill: parent
-        // color: "#bec8c8"
+        color: "#bec8c8"
     }
 
 
@@ -21,37 +21,75 @@ Window {
         padding: 10
         spacing: 10
 
-        Row {
-            spacing: 10
+        GroupBox {
+            title: "按钮类型"
 
-            AButton {
-                text: "Primary Button"
+            // 按钮类型
+            Row {
+                spacing: 10
 
-                btnType: AButtonConfig.BtnType.Primary
+                AButton {
+                    text: "Primary Button"
+
+                    btnType: AButtonConfig.BtnType.Primary
+                }
+
+                AButton {
+                    text: "Default Button"
+
+                    btnType: AButtonConfig.BtnType.Default
+                }
+
+                AButton {
+                    text: "Dashed Button"
+
+                    btnType: AButtonConfig.BtnType.Dashed
+                }
+
+                AButton {
+                    text: "Text Button"
+
+                    btnType: AButtonConfig.BtnType.Text
+                }
+
+                AButton {
+                    text: "Link Button"
+
+                    btnType: AButtonConfig.BtnType.Link
+                }
             }
+        }
 
-            AButton {
-                text: "Default Button"
+        GroupBox {
+            title: "幽灵按钮"
 
-                btnType: AButtonConfig.BtnType.Default
-            }
+            // 幽灵按钮
+            Row {
+                spacing: 10
 
-            AButton {
-                text: "Dashed Button"
+                AButton {
+                    text: "Primary"
 
-                btnType: AButtonConfig.BtnType.Dashed
-            }
+                    btnType: AButtonConfig.BtnType.Primary
+                    ghost: true
+                }
 
-            AButton {
-                text: "Text Button"
+                AButton {
+                    text: "Default"
+                    ghost: true
+                }
 
-                btnType: AButtonConfig.BtnType.Text
-            }
+                AButton {
+                    text: "Dashed"
+                    ghost: true
 
-            AButton {
-                text: "Link Button"
+                    btnType: AButtonConfig.BtnType.Dashed
+                }
 
-                btnType: AButtonConfig.BtnType.Link
+                AButton {
+                    text: "Danger"
+                    ghost: true
+                }
             }
         }
     }

@@ -42,6 +42,10 @@ const Colors = {
 // 工具函数 - 获取背景颜色
 function getBackgroundColor(btnType, ghost, isHovered = false, isPressed = false, enabled = true) {
 
+    if (ghost) {
+        return Colors.transparent;
+    }
+
     switch (btnType) {
         case BtnType.Primary:
             return isPressed ? Colors.primaryPressed :
@@ -62,7 +66,17 @@ function getBackgroundColor(btnType, ghost, isHovered = false, isPressed = false
 }
 
 // 工具函数 - 获取边框宽度
-function getBorderWidth() {
+function getBorderWidth(btnType, ghost = false) {
+
+    if (ghost) {
+        if (btnType === BtnType.Primary) {
+            return 1;
+        } else if (btnType === BtnType.Default) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
     if (btnType === BtnType.Default) {
         return 1
@@ -74,6 +88,16 @@ function getBorderWidth() {
 
 // 工具函数 - 获取边框颜色
 function getBorderColor(btnType, ghost, isHovered = false, isPressed = false) {
+
+    if (ghost) {
+        if (btnType === BtnType.Primary) {
+            return isPressed ? Colors.primaryPressed :
+                isHovered ? Colors.primaryHover : Colors.primary;
+        } else if (btnType === BtnType.Default || btnType === BtnType.Dashed) {
+            return isPressed ? Colors.primaryPressed :
+                isHovered ? Colors.primaryHover : Colors.white;
+        }
+    }
 
     if (btnType === BtnType.Primary) {
         return isPressed ? Colors.primaryPressed :
@@ -100,6 +124,16 @@ function getDashedBorderColor(btnType, ghost, isHovered = false, isPressed = fal
 
 // 工具函数 - 获取文字颜色
 function getTextColor(btnType, ghost, isHovered = false, isPressed = false, enabled = true) {
+    if (ghost) {
+        if (btnType === BtnType.Primary) {
+            return isPressed ? Colors.primaryPressed :
+                isHovered ? Colors.primaryHover : Colors.primary;
+        } else if (btnType === BtnType.Default || btnType === BtnType.Dashed) {
+            return isPressed ? Colors.primaryPressed :
+                isHovered ? Colors.primaryHover : Colors.white;
+        }
+    }
+
     if (btnType === BtnType.Primary) {
         return Colors.white;
     } else if (btnType === BtnType.Default || btnType === BtnType.Dashed) {

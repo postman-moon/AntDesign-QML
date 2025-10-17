@@ -27,7 +27,7 @@ Button {
 
         // 基础样式
         color: Config.getBackgroundColor(btnType, ghost, isHovered, isPressed, enabled)
-        border.width: Config.getBorderWidth()
+        border.width: Config.getBorderWidth(btnType, ghost)
         border.color: Config.getBorderColor(btnType, ghost, isHovered, isPressed, enabled)
 
         // 虚线边框（仅 Dashed 类型）
@@ -63,7 +63,7 @@ Button {
 
                 // 5) 设置线条宽度（单位：像素）
                 // 通常定义在配置文件 Config 中，方便统一管理边框粗细
-                ctx.lineWidth = Config.getBorderWidth()
+                ctx.lineWidth = Config.getBorderWidth(btnType)
 
                 // 6) 设置虚线模式
                 // setLineDash([dashLength, gapLength])
